@@ -40,6 +40,46 @@ month = FORMAT('CALENDAR'[Date],"mmmm")
 create relation with orderdate - calender date
 
 
+YTD = TOTALYTD(SUM('ecommerce_data (3)'[sales_per_order]),'date'[Date])
+
+MONTH = MONTH('date'[Date])
+
+PYTD = CALCULATE(SUM('ecommerce_data (3)'[sales_per_order]),DATESYTD(SAMEPERIODLASTYEAR('date'[Date])))
+
+Year-over-Year = ([YTD]-[PYTD])/[PYTD]
+
+TREND ICON = VAR POSITIVE_icon = UNICHAR(9650) 
+             VAR negative_icon = UNICHAR(9660)
+                var result = IF([Year-over-Year]>0,POSITIVE_icon,negative_icon)
+                RETURN result
+
+salesiconcolor = IF([Year-over-Year]>0,"green","red")
+
+ytd qty = CONCATENATE("#",FORMAT([YTD]/1000,"0.0k"))
+
+PYTDqty = CALCULATE(SUM('ecommerce_data (3)'[order_quantity]),DATESYTD(SAMEPERIODLASTYEAR('date'[Date])))
+
+
+qty ICON = VAR POSITIVE_icon = UNICHAR(9650) 
+             VAR negative_icon = UNICHAR(9660)
+                var result = IF([ytd qty]>0,POSITIVE_icon,negative_icon)
+                RETURN result
+
+profit margin = SUM('ecommerce_data (3)'[profit_per_order])/SUM('ecommerce_data (3)'[ship_date])
+
+YTD profit margin = TOTALYTD([profit margin],'date'[Date])
+
+PYTD profit margin = CALCULATE([profit margin],DATESYTD(SAMEPERIODLASTYEAR('date'[Date])))
+
+YOY PROFIT MARGIN = [YTD profit margin]-[PYTD profit margin]/[PYTD profit margin]
+
+PROFIT ICON = VAR POSITIVE_icon = UNICHAR(9650) 
+             VAR negative_icon = UNICHAR(9660)
+                var result = IF([YOY PROFIT MARGIN]>0,POSITIVE_icon,negative_icon)
+                RETURN result
+
+PROFIT MARGIN COLOUR = IF([YOY PROFIT MARGIN]>0,"green","red")
+
 
 
 
