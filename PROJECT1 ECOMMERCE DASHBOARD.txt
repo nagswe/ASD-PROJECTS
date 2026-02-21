@@ -39,7 +39,6 @@ month = FORMAT('CALENDAR'[Date],"mmmm")
 
 create relation with orderdate - calender date
 
-
 YTD = TOTALYTD(SUM('ecommerce_data (3)'[sales_per_order]),'date'[Date])
 
 MONTH = MONTH('date'[Date])
@@ -79,6 +78,14 @@ PROFIT ICON = VAR POSITIVE_icon = UNICHAR(9650)
                 RETURN result
 
 PROFIT MARGIN COLOUR = IF([YOY PROFIT MARGIN]>0,"green","red")
+
+
+
+
+
+
+
+
 
 
 
