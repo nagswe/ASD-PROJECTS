@@ -1,0 +1,15 @@
+PROJECT2
+
+EMPLOYEE PROJECT
+
+1 total emps = COUNT(Emp[ENAME])
+
+2 total sal = SUM(Emp[SAL])
+
+3 total paid = SUMX('Emp','Emp'[SAL]+[COMM])
+
+4 total jobs = DISTINCTCOUNT(Emp[JOB])
+
+5 total dept = DISTINCTCOUNT(DeptTable[Dname])
+
+6 emp exp = YEARFRAC('Emp'[HIREDATE],TODAY(),0)
